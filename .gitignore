@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Apple Notes database for development
+database/*
+!database/.gitkeep

@@ -40,7 +40,8 @@ Note: You might need to use the direct path to `uv`. Use `which uv` to find the 
 
 <details>
   <summary>Development/Unpublished Servers Configuration</summary>
-  ```
+  
+  ```json
   "mcpServers": {
     "apple-notes-mcp": {
       "command": "uv",
@@ -57,7 +58,8 @@ Note: You might need to use the direct path to `uv`. Use `which uv` to find the 
 
 <details>
   <summary>Published Servers Configuration</summary>
-  ```
+  
+  ```json
   "mcpServers": {
     "apple-notes-mcp": {
       "command": "uvx",

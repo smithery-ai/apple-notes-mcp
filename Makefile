@@ -5,6 +5,14 @@ all: help
 reinstall-deps:
 	uv sync --reinstall
 
+## build: Build the package
+build:
+	uv build
+
+## publish: Publish the package to PyPI
+publish:
+	uv publish
+
 ## inspect-local-server: Inspect the local MCP server
 inspect-local-server:
 	npx @modelcontextprotocol/inspector uv --directory . run apple-notes-mcp --db-path NoteStore.sqlite
