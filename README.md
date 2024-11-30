@@ -29,7 +29,19 @@ No support for checklist status (ZHASCHECKLIST)
 
 ## Quickstart
 
-### Install
+### Install the server
+
+Recommend using [uv](https://docs.astral.sh/uv/getting-started/installation/) to install the server locally for Claude.
+
+```
+uvx install github:yourusername/apple-notes-mcp@v0.1.1
+```
+OR
+```
+uv pip install git+https://github.com/yourusername/apple-notes-mcp.git@v0.1.1
+```
+
+Add your config as described below.
 
 #### Claude Desktop
 

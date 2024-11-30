@@ -13,6 +13,20 @@ build:
 publish:
 	uv publish
 
+## release: Create and push a new release tag
+release:
+	@if [ -z "$$VERSION" ]; then \
+		echo "Error: VERSION is required. Use 'make release VERSION=x.x.x'"; \
+		exit 1; \
+	fi
+	@echo "Creating release v$$VERSION..."
+	git tag -a v$$VERSION -m "Release v$$VERSION"
+	git push origin v$$VERSION
+	@echo "\nRelease v$$VERSION created!"
+	@echo "Users can install with:"
+	@echo "  uvx install github:yourusername/apple-notes-mcp@v$$VERSION"
+	@echo "  uv pip install git+https://github.com/yourusername/apple-notes-mcp.git@v$$VERSION"
+
 ## inspect-local-server: Inspect the local MCP server
 inspect-local-server:
 	npx @modelcontextprotocol/inspector uv --directory . run apple-notes-mcp --db-path NoteStore.sqlite
