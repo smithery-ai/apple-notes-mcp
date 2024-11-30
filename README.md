@@ -1,6 +1,10 @@
-# apple-notes-mcp MCP server
+# Apple Notes Model Context Protocol Server for Claude Desktop.
 
-Read local Apple Notes database
+Read your local Apple Notes database and provide it to Claude Desktop.
+
+Now Claude can search your most forgotten notes and know even more about you.
+
+Noting could go wrong.
 
 ## Components
 
@@ -8,24 +12,21 @@ Read local Apple Notes database
 
 The server implements the ability to read and write to your Apple Notes.
 
-### Prompts
-
-The server provides multiple prompts:
-- search-notes: Search notes by title or content
-- list-folders: List all folders
-- get-folder-notes: Get all notes in a specific folder
-
 ### Tools
 
-Coming soon.
+The server provides multiple prompts:
+- `get-all-notes`: Get all notes.
+- `read-note`: Get full content of a specific note.
+- `search-notes`: Search through notes.
 
 ### Missing Features:
 
 - No handling of encrypted notes (ZISPASSWORDPROTECTED)
 - No support for pinned notes filtering
 - No handling of cloud sync status
-Missing attachment content retrieval
-No support for checklist status (ZHASCHECKLIST)
+- Missing attachment content retrieval
+- No support for checklist status (ZHASCHECKLIST)
+- No ability to create or edit notes
 
 ## Quickstart
 
@@ -82,6 +83,12 @@ Note: You might need to use the direct path to `uv`. Use `which uv` to find the 
   }
   ```
 </details>
+
+## Mac OS Disk Permissions
+
+You'll need to grant Full Disk Access to the server. This is because the Apple Notes sqlite database is nested deep in the MacOS file system.
+
+I may look at an AppleScript solution in the future if this annoys me further or if I want to start adding/appending to Apple Notes.
 
 ## Development
 
