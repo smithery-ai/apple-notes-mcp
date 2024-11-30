@@ -1,6 +1,6 @@
 [project]
 name = "apple-notes-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Read local Apple Notes database"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -20,3 +20,6 @@ build-backend = "hatchling.build"
 
 [project.scripts]
 apple-notes-mcp = "apple_notes_mcp:main"
+
+[tool.apple-notes-mcp]
+server_name = "apple-notes-mcp"

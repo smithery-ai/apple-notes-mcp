@@ -7,6 +7,7 @@ import mcp.server.stdio
 from .notes_database import NotesDatabase
 import zlib
 from .proto.notestore_pb2 import NoteStoreProto
+from importlib import metadata
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -296,13 +297,16 @@ async def main(db_path: str | None = None):
     global notes_db
     notes_db = NotesDatabase(db_path) if db_path else NotesDatabase()
 
+    # Get the distribution info from the package
+    dist = metadata.distribution("apple-notes-mcp")
+
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
             read_stream,
             write_stream,
             InitializationOptions(
-                server_name="apple-notes-mcp",
-                server_version="0.1.0",
+                server_name=dist.metadata["Name"],
+                server_version=dist.version,
                 capabilities=server.get_capabilities(
                     notification_options=NotificationOptions(),
                     experimental_capabilities={},
