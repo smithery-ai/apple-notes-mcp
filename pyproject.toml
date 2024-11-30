@@ -1,7 +1,7 @@
 [project]
 name = "apple-notes-mcp"
 version = "0.1.1"
-description = "Read local Apple Notes database"
+description = "Read local Apple Notes sqlite database and provide it as a context protocol server for Claude Desktop."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,8 +10,13 @@ dependencies = [
  "protobuf>=5.29.0",
  "python-dotenv>=1.0.1",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+]
 [[project.authors]]
-name = "Nav"
+name = "Navishkar Rao"
 email = "sirmews@gmail.com"
 
 [build-system]
