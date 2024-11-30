@@ -19,6 +19,14 @@ The server provides multiple prompts:
 
 Coming soon.
 
+### Missing Features:
+
+- No handling of encrypted notes (ZISPASSWORDPROTECTED)
+- No support for pinned notes filtering
+- No handling of cloud sync status
+Missing attachment content retrieval
+No support for checklist status (ZHASCHECKLIST)
+
 ## Quickstart
 
 ### Install
