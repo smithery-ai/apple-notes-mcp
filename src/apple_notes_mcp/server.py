@@ -209,7 +209,9 @@ async def handle_call_tool(
             types.TextContent(
                 type="text",
                 text=f"Found {len(results)} notes:\n"
-                + "\n".join(f"- {note['title']}" for note in results),
+                + "\n".join(
+                    f"- {note['title']} [ID: {note['pk']}]" for note in results
+                ),
             )
         ]
 
@@ -226,13 +228,14 @@ async def handle_call_tool(
         note_id = arguments.get("note_id")
         note = notes_db.get_note_content(note_id)
         if note:
+            decoded_content = decode_note_content(note["content"])
             return [
                 types.TextContent(
                     type="text",
                     text=f"Title: {note['title']}\n"
                     f"Modified: {note['modifiedAt']}\n"
                     f"Folder: {note['folder']}\n"
-                    f"\nContent:\n{note['content']}",
+                    f"\nContent:\n{decoded_content}",
                 )
             ]
         return [types.TextContent(type="text", text="Note not found")]
@@ -285,13 +288,13 @@ async def handle_get_prompt(
     )
 
 
-async def main(db_path: str):
+async def main(db_path: str | None = None):
     # Run the server using stdin/stdout streams
 
     logger.info(f"Starting MCP server with db_path: {db_path}")
 
     global notes_db
-    notes_db = NotesDatabase(db_path)
+    notes_db = NotesDatabase(db_path) if db_path else NotesDatabase()
 
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(

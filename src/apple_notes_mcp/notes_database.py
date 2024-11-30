@@ -3,6 +3,8 @@ import logging
 from contextlib import closing
 from pathlib import Path
 from typing import Any, List, Dict
+import os
+import stat
 
 logger = logging.getLogger(__name__)
 
@@ -13,10 +15,37 @@ class NotesDatabase:
         db_path: str = "~/Library/Group Containers/group.com.apple.notes/NoteStore.sqlite",
     ):
         self.db_path = str(Path(db_path).expanduser())
+        self._validate_path()
         self._init_database()
+
+    def _validate_path(self):
+        """Validate database path and permissions"""
+        db_path = Path(self.db_path)
+
+        if not db_path.exists():
+            raise FileNotFoundError(
+                f"Notes database not found at: {self.db_path}\n"
+                "Please verify the path and ensure you have granted Full Disk Access"
+            )
+
+        # Check file permissions
+        try:
+            mode = os.stat(self.db_path).st_mode
+            readable = bool(mode & stat.S_IRUSR)
+            if not readable:
+                raise PermissionError(
+                    f"No read permission for database at: {self.db_path}\n"
+                    "Please check file permissions and Full Disk Access settings"
+                )
+        except OSError as e:
+            raise PermissionError(
+                f"Cannot access database at {self.db_path}: {str(e)}\n"
+                "You may need to grant Full Disk Access permission in System Preferences"
+            )
 
     def _init_database(self):
         logger.debug("Initializing database connection")
+        logger.info(f"Initializing database with path: {self.db_path}")
         try:
             with closing(sqlite3.connect(self.db_path)) as conn:
                 conn.row_factory = sqlite3.Row
@@ -30,8 +59,22 @@ class NotesDatabase:
                         "This doesn't appear to be an Apple Notes database - missing required tables"
                     )
         except sqlite3.Error as e:
-            logger.error(f"Failed to initialize database: {e}")
-            raise
+            if "database is locked" in str(e):
+                raise RuntimeError(
+                    f"Database is locked: {self.db_path}\n"
+                    "Please close Notes app or any other applications that might be accessing it"
+                )
+            elif "unable to open" in str(e):
+                raise PermissionError(
+                    f"Cannot open database: {self.db_path}\n"
+                    "Please verify:\n"
+                    "1. You have granted Full Disk Access permission\n"
+                    "2. The file exists and is readable\n"
+                    "3. The Notes app is not exclusively locking the database"
+                )
+            else:
+                logger.error(f"Failed to initialize database: {e}")
+                raise
 
     def _execute_query(
         self, query: str, params: dict[str, Any] | None = None
