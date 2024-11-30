@@ -1,0 +1,21 @@
+[project]
+name = "apple-notes-mcp"
+version = "0.1.0"
+description = "Read local Apple Notes database"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+ "httpx>=0.28.0",
+ "mcp>=1.0.0",
+ "python-dotenv>=1.0.1",
+]
+[[project.authors]]
+name = "Nav"
+email = "sirmews@gmail.com"
+
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project.scripts]
+apple-notes-mcp = "apple_notes_mcp:main"
