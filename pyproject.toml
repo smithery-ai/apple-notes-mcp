@@ -28,3 +28,7 @@ apple-notes-mcp = "apple_notes_mcp:main"
 
 [tool.apple-notes-mcp]
 server_name = "apple-notes-mcp"
+
+[project.urls]
+Homepage = "https://sirmews.github.io/apple-notes-mcp/"
+Issues = "https://github.com/sirmews/apple-notes-mcp/issues"
