@@ -35,11 +35,11 @@ The server provides multiple prompts:
 Recommend using [uv](https://docs.astral.sh/uv/getting-started/installation/) to install the server locally for Claude.
 
 ```
-uvx install github:yourusername/apple-notes-mcp@v0.1.1
+uvx install apple-notes-mcp
 ```
 OR
 ```
-uv pip install git+https://github.com/yourusername/apple-notes-mcp.git@v0.1.1
+uv pip install apple-notes-mcp
 ```
 
 Add your config as described below.
