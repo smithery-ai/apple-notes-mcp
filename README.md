@@ -51,38 +51,37 @@ On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
 
 Note: You might need to use the direct path to `uv`. Use `which uv` to find the path.
 
-<details>
-  <summary>Development/Unpublished Servers Configuration</summary>
-  
-  ```json
-  "mcpServers": {
-    "apple-notes-mcp": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "{project_dir}",
-        "run",
-        "apple-notes-mcp"
-      ]
-    }
-  }
-  ```
-</details>
 
-<details>
-  <summary>Published Servers Configuration</summary>
+__Development/Unpublished Servers Configuration__
   
-  ```json
-  "mcpServers": {
-    "apple-notes-mcp": {
-      "command": "uvx",
-      "args": [
-        "apple-notes-mcp"
-      ]
-    }
+```json
+"mcpServers": {
+  "apple-notes-mcp": {
+    "command": "uv",
+    "args": [
+      "--directory",
+      "{project_dir}",
+      "run",
+      "apple-notes-mcp"
+    ]
   }
-  ```
-</details>
+}
+```
+
+
+__Published Servers Configuration__
+  
+```json
+"mcpServers": {
+  "apple-notes-mcp": {
+    "command": "uvx",
+    "args": [
+      "apple-notes-mcp"
+    ]
+  }
+}
+```
+
 
 ## Mac OS Disk Permissions
 
@@ -131,3 +130,15 @@ npx @modelcontextprotocol/inspector uv --directory {project_dir} run apple-notes
 
 
 Upon launching, the Inspector will display a URL that you can access in your browser to begin debugging.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Source Code
+
+The source code is available on [GitHub](https://github.com/sirmews/apple-notes-mcp).
+
+## Contributing
+
+Send your ideas and feedback to me on [Bluesky](https://bsky.app/profile/perfectlycromulent.bsky.social) or by opening an issue.
