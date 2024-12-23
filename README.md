@@ -1,4 +1,5 @@
 # Apple Notes Model Context Protocol Server for Claude Desktop.
+[![smithery badge](https://smithery.ai/badge/apple-notes-mcp)](https://smithery.ai/server/apple-notes-mcp)
 
 Read your local Apple Notes database and provide it to Claude Desktop.
 
@@ -29,6 +30,14 @@ The server provides multiple prompts:
 - No ability to create or edit notes
 
 ## Quickstart
+
+### Installing via Smithery
+
+To install Apple Notes Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/apple-notes-mcp):
+
+```bash
+npx -y @smithery/cli install apple-notes-mcp --client claude
+```
 
 ### Install the server
 
